@@ -1,13 +1,22 @@
 'use strict'
 var mongoose = require('mongoose');
-var app = require('./app')
-var port = 3800
+var express = require('express');
+var app = express();
+var morgan = require('morgan');
+
+//Middleware
+app.use(morgan('dev'));
+app.use(express.json());
+
+//Routes
+app.use(require('./routes/index'));
+app.use('/api', require('./routes/frutas'));
 
 mongoose.Promise = global.Promise;
 //Conexion mongoose
 mongoose.connect('mongodb://localhost:27017/curso_mongo', {useNewUrlParser: true}).then(()=>{
     console.log('* MongoDb: OK');
-    app.listen(port, res=>{
+    app.listen(3800, res=>{
         console.log('* Express: OK')
     })
 }).catch(err =>{

@@ -10,4 +10,4 @@ var FrutaSchema = {
 }
 
 //Definimos el nombre de la entidad Fruta, que lo convierte a plural en la DB
-module.exports = mongoose.model('Fruta')
+module.exports = mongoose.model('Fruta', FrutaSchema)
