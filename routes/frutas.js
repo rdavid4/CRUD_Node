@@ -34,6 +34,17 @@ router.put('/frutas/:id', (req, res)=>{
       
     });
 });
+//Delete
+router.delete('/frutas/:id', (req, res)=>{
+    var frutaId = req.params.id;
+ 
+
+    Fruta.findByIdAndRemove(frutaId,(err, frutaUpdate)=>{
+           
+            res.status(200).send(frutaUpdate);
+      
+    });
+});
 //Store
 router.post('/frutas', (req, res)=>{
     var fruta = new Fruta();
